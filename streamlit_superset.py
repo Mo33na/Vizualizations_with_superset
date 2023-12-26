@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 import json
 
-def fetch_guest_token_from_backend():
+def fetchGuestTokenFromBackend():
     url = 'http://localhost:8088/'
     username = 'admin'
     password = 'iamadmin'
@@ -22,8 +22,7 @@ def fetch_guest_token_from_backend():
         access_token = response.json().get('access_token')
 
         if access_token:
-            #st.write("Access Token:", access_token)  # Display the access token in Streamlit (optional)
-
+            #st.write("Access Token:", access_token)  
             guest_token_endpoint = f'{url}/api/v1/security/guest_token'
             headers = {'Authorization': f'Bearer {access_token}'}
 
@@ -47,11 +46,11 @@ def fetch_guest_token_from_backend():
                 guest_token = guest_token_response.json().get('token')
                 return guest_token  # Return the guest token
 
-    return None  # Return None if unable to fetch the guest token
+    return None  
 
 def main():
     # Fetch the guest token while loading the page
-    guest_token = fetch_guest_token_from_backend()
+    guest_token = fetchGuestTokenFromBackend()
 
     if guest_token:
         col1, col2 = st.columns([1,3])
