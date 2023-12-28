@@ -51,13 +51,19 @@ def fetchGuestTokenFromBackend():
 def main():
     # Fetch the guest token while loading the page
     guest_token = fetchGuestTokenFromBackend()
+    st.set_page_config(layout="wide")
 
     if guest_token:
         col1, col2 = st.columns([1,3])
 
+        with col1:
+            st.image("Tih1.png",width=310)
+
         # Embedding the dashboard using HTML component
         with col2:
-            st.header('Analytics using MPlad Dashboard')
+            #st.markdown("<br>" * 6, unsafe_allow_html=True)# for horizontal spacing
+    
+            st.header('Insights from MPlad Dashboard')
             st.components.v1.html(
                 f"""
                 <div id="embed"></div>
